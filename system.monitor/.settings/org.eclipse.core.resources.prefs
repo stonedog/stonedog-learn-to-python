@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/stonedog/monitor/app.py=utf-8
 encoding//src/stonedog/monitor/config.py=utf-8
+encoding//src/stonedog/monitor/machine/state.py=utf-8
