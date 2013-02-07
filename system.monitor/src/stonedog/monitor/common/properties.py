@@ -8,19 +8,15 @@ class PropertyProxy(object):
     '''
     classdocs
     '''
-
-
-    def __init__(self,propName,propType):
-        '''
-        Constructor
-        '''
-        pass
-    
-    def __set__(self,propValue):
-        pass
-    
-    def __get__(self):
-        pass
-    
-    def __del__(self):
-        pass
+    def __init__(self,propname,proptype,default=None):
+        self.name='_'+propname
+        self.type=proptype
+        self.default_value=default if default else proptype()
+    def __get__(self,instance,cls):
+        return getattr(instance,self.name,self.default_value)
+    def __set__(self,instance,value):
+        if not isinstance(value,self.type):
+            raise TypeError('must by %s type' % self.type)
+        setattr(instance,self.name,value)
+    def __delete__(self,instance):
+        raise AttributeError('can not delete attribute')
