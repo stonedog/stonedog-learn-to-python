@@ -1,0 +1,53 @@
+win32console可以从http://sourceforge.net/projects/pywin32/
+下载，这里面有。
+参看http://stackoverflow.com/questions/2559731/python-win32console-import-problem：
+
+
+http://www.groad.net/bbs/read.php?tid-4651.html
+CONIN$ 和 CONOUT$ 是系统保留的两个路径名，它们用来做控制台的输入(键盘)缓冲区和活动的控制台屏幕输出缓冲区。
+
+最初时，标准输入，输出和错误都是支配到控制台上的。
+
+直接使用控制台而撇开对这些标准设备的任何重定向操作是可能的，这时只需要使用由 CreateFile 打开的 "CONIN$" 或 "CONOUT$" 的句柄即可。
+
+在使用 GetStdHandle() 时，它的参数选项分别为：
+STD_INPUT_HANDLE，STD_OUTPUT_HANDLE 和 STD_ERROR_HANDLE。
+
+STD_INPUT_HANDLE 为标准输入设备，初始时表示控制台输入缓冲区，即 CONIN$ 。
+
+STD_OUTPUT_HANDLE 为标准输出设备，初始时表示活动的控制台屏幕输出缓冲区，即 CONOUT$ 。
+
+STD_ERROR_HANDLE 为标准错误设备，初始时表示活动的控制台屏幕输出缓冲区，也为 CONOUT$ 。
+
+
+python脚本的windows控制台彩色文字输出
+http://download.csdn.net/download/zanpen2000/609891
+在linux系统中，终端内可以通过curse模块或控制字符来输出彩色文本，但是在windows系统中没有curse模块也不能用控制字符，只能调用 win32console模块中的控制台相关函数。直接调用这些函数还是比较麻烦的，因此有人弄了个WConio模块，封装了这些函数的功能。使用 WConio，彩色文本的输出变得简单：
+import WConio
+attr=WConio.gettextinfo()[4] #保存默认文本颜色
+WConio.textcolor(WConio.RED) #将后续输出的文本的颜色设为红色
+print "红色的文字"
+WConio.settextattr(attr) #回复默认的文本颜色
+
+
+If you grab ActivePython (http://www.activestate.com/Products/ActivePython/?mp=1), you get access to most of the Win32 API... so you can do it similar to how you do it in C...
+win32console.GetStdHandle (http://aspn.activestate.com/ASPN/docs/ActivePython/2.4/pywin32/win32console__GetStdHandle_meth.html)
+PyConsoleScreenBuffer.SetConsoleTextAttribute (http://aspn.activestate.com/ASPN/docs/ActivePython/2.4/pywin32/PyConsoleScreenBuffer__SetConsoleTextAttribute_met h.html)
+With some appropriate checks for what OS it's running on, and fall back to ANSI X3.64 (http://en.wikipedia.org/wiki/ANSI_X3.64) if it's not running on Windows (most, if not all, Linux consoles will read ANSI).
+though limited to 9 colorsActually, 16... RGB, CMY, Black and White, with both bright and dark variants of each. You get the same 16 colours with the ANSI codes, too.
+
+
+Running GUI Applications
+http://onlamp.com/pub/a/python/excerpts/chpt20/index.html?page=2
+
+Tkinter applications are normal Python scripts, but there are a couple of complications worth knowing about when running graphical applications under Windows. These were discussed in Chapter 3, Python on Windows, but are important enough to reiterate here; what we say in this section applies equally to wxPython later in this chapter.
+
+The standard Python.exe that comes with Python is known as a console application (this means it has been built to interact with a Windows console, otherwise known as a DOS box or command prompt). Although you can execute your Tkinter programs using Python.exe, your program will always be associated with a Windows console. It works just fine, but has the following side effects:
+
+If you execute Python.exe from Windows Explorer, a new empty console window is created; then the Tkinter windows are created.
+If you execute a Tkinter application under Python.exe from a command prompt, the command prompt doesn't return until the Tkinter application has finished. This will be a surprise for many users, who expect that executing a GUI program returns the command prompt immediately.
+To get around this problem, Python comes with a special GUI version called Pythonw.exe. This is almost identical to the standard Python.exe, except it's not a console program, so doesn't suffer the problems described previously.
+
+There are two drawbacks to this approach. The first is that .py files are automatically associated with Python.exe. As we saw in Chapter 3, this makes it simple to execute Python programs, but does present a problem when you want to use Pythonw.exe. To solve this problem, Python automatically associates the .pyw extension with Pythonw.exe ; thus, you can give GUI Python applications a .pyw extension, and automatically execute them from Windows Explorer, the command prompt, and so forth.
+
+The second drawback is that because Pythonw.exe has no console, any tracebacks printed by Python aren't typically seen. Although Python prints the traceback normally, the lack of a console means it has nowhere useful to go. To get around this problem, you may like to develop your application using Python.exe (where the console is an advantage for debugging) but run the final version using Pythonw.exe.
