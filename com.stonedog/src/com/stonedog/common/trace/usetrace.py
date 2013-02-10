@@ -23,13 +23,13 @@ class B(A):
 
     def Ahbb(self):
         thisIsFunctionA()
+a=A()
+print ('*'*40)
+a.Aha()
 
 thisIsFunctionA()
 
 print ('*'*40)
-a=A()
-print ('*'*40)
-a.Aha()
 
 b=B()
 print ('*'*40)

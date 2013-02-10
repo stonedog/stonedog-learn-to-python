@@ -5,11 +5,12 @@ Created on 2013-2-7
 @author: Administrator
 '''
 from stonedog.monitor.common.properties import PropertyProxy
-
+from stonedog.monitor.common.trace import trace
 class OSState(object):
     '''
     classdocs
     '''
+    trace()
     HostName=PropertyProxy('HostName',str)
     DiskSpaceUsage=PropertyProxy('DiskspaceUsage',list)
     CheckTime=PropertyProxy('CheckTime',str)
@@ -23,6 +24,7 @@ class OSState(object):
         pass
 
 class OracleDBState(object):
+    trace()
     TNSName=PropertyProxy('TNSname',str)
     ServiceName=PropertyProxy('ServiceName',str)
     DGRole=PropertyProxy('DGRole',str)

@@ -5,6 +5,7 @@ Created on 2013-2-7
 '''
 from abstractcomponent import AbstractMachineComponent
 from state import OSState
+from stonedog.monitor.common.trace import trace
 class XNixOS(AbstractMachineComponent):
     '''
     classdocs
@@ -14,22 +15,26 @@ class XNixOS(AbstractMachineComponent):
         '''
         Constructor
         '''
+        trace()
         self._machineConfig=machineConfig
         self.Connect()
     
     def Connect(self):
-        pass
+        trace()
     
     def Close(self):
-        pass
+        trace()
     
     def CheckVersion(self):
-        pass
+        trace()
+        return ''
     
     def CheckDiskSpace(self):
-        pass
+        trace()
+        return []
     
     def CheckAll(self):
+        trace()
         osState=OSState()
         
         osState.Version=self.CheckVersion()

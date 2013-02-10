@@ -3,7 +3,7 @@ Created on 2013-2-7
 
 @author: Administrator
 '''
-
+from stonedog.monitor.common.trace import trace
 class ConsolePrinter(object):
     '''
     classdocs
@@ -14,9 +14,10 @@ class ConsolePrinter(object):
         '''
         Constructor
         '''
+        trace()
     def ReportInfo(self,s):
-        pass
+        trace()
     
     def ReportWarning(self,s):
-        pass
+        trace()
         

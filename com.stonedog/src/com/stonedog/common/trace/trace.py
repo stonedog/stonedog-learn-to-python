@@ -14,11 +14,23 @@ class TrueDebug(object):
         if log == False: 
             return
         current = inspect.currentframe()
+        class_name=''
+        
         if parents: 
             self.get_parents(current)
             self.true_debug(current, objects, locale)
  
     def true_debug(self, current, objects, locale):
+        outerframe=(inspect.getouterframes(current)[1])
+        class_name=''     
+        try :
+            class_name=outerframe[0].f_locals['self'].__class__.__name__
+        except KeyError:
+            class_name=''
+            
+        #print inspect.isclass(current)
+        print ('class name is %s ' % class_name)
+        
         debug_string = 'Function: ' + str(inspect.getouterframes(current)[1][3])
         #if locale == 'all': print inspect.getouterframes(current)[4]; return
         if objects != None: 

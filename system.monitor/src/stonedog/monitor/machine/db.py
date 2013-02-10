@@ -5,6 +5,7 @@ Created on 2013-2-7
 '''
 from abstractcomponent import AbstractMachineComponent
 from state import OracleDBState
+from stonedog.monitor.common.trace import trace
 class OracleDB(object):
     '''
     classdocs
@@ -13,34 +14,40 @@ class OracleDB(object):
         '''
         Constructor
         '''
+        trace()
         self._machineConfig=machineConfig
         self.Connect()
         
     def Connect(self):
-        pass
+        trace()
     
     def Close(self):
-        pass
+        trace()
     
     def CheckVersion(self):
-        pass
+        trace()
+        return ''
     
     def CheckTSSpaceUsage(self):
-        pass
-    
+        trace()
+        return []
     def CheckASMDGSpaceUsage(self):
-        pass
+        trace()
+        return []
     
     def CheckDGRole(self):
-        pass
+        trace()
+        return ''
     
     def CheckAll(self):
+        trace()
+        
         dbState=OracleDBState()
         
         dbState.Version=self.CheckVersion()
         dbState.CheckTime=''
-        if self._cf.HaveASM=='True':
-            dbState.ASMDGSpaceUsage=self.CheckASMDGSpaceUsage()
+        #if self._machineConfig.HaveASM=='True':
+        dbState.ASMDGSpaceUsage=self.CheckASMDGSpaceUsage()
         dbState.DGRole=self.CheckDGRole()
         dbState.TSSpaceUsage=self.CheckTSSpaceUsage()
         return dbState
