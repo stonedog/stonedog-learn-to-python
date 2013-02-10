@@ -19,11 +19,11 @@ def trace():
 | .... other function       |
 |---------------------------|
 |somefunction               |
-| call trace()              | 
+| call trace()              |   -3
 |---------------------------|
-|trace                      |
+|trace                      |   -2
 |---------------------------|
-|traceback.extract_stack()  |
+|traceback.extract_stack()  |   -1
 ----------------------------|
 '''    
 
