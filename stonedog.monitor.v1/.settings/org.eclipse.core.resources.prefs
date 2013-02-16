@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/stonedogmonitor1/checker/dbchecker.py=utf-8
+encoding//src/stonedogmonitor1/config/initconfig.py=utf-8
+encoding//src/stonedogmonitor1/db/checksql.py=utf-8
+encoding//src/stonedogmonitor1/db/oracle.py=utf-8
+encoding//src/stonedogmonitor1/monitor.py=utf-8
+encoding//src/stonedogmonitor1/report/dbreport.py=utf-8
+encoding//src/stonedogmonitor1/window32console/console.py=utf-8
