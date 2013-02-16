@@ -26,7 +26,7 @@ class OracleDB(object):
             #print (conf_obj.GetTNS())
             tns=conf_obj.GetTNS()
             
-            self._connection=cx_Oracle.connect('sys','H2oisWater',tns,mode=cx_Oracle.SYSDBA)
+            self._connection=cx_Oracle.connect('yourname','yourpassword',tns,mode=cx_Oracle.SYSDBA)
             self._cursor=self._connection.cursor()
             self._cursor.execute('select status from v$instance')
             self.__status=self._cursor.fetchone()[0]

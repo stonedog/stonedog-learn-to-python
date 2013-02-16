@@ -12,11 +12,11 @@ class XNixHost():
         port='22'
         hostname=cf.HostName
         if hostname in specialhost:
-            username='oracle'
-            password='fj@3919X'
+            username='yourname'
+            password='yourpassword'
         else:
-            username='zhangxiaoming'
-            password='25DecXmas25'
+            username='yourname'
+            password='yourpassword'
         if hostname in ('192.168.5.31','192.168.5.32'):
             self.__cmd='df -Pm' 
  
