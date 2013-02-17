@@ -37,7 +37,7 @@ def TextAttr(color):
 oldset=GetOldSetting()
 
 print ('old seting=%d' % oldset)
-time.sleep(2)
+time.sleep(20)
 for b in range(0,16):
     for f in range(0,16):
         TextAttr((b<<4)|f)
